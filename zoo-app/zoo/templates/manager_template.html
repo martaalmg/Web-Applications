@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>MANAGER OPTIONS</h1>
+
+
+<form action = "{{ url_for('main.event_featured')}}">
+    <button type="submit"> Modify the featured and not featured events </button>
+</form>  
+
+<form action = "{{ url_for('main.add_animal')}}">
+    <button type="submit"> Add animals here</button>
+</form> 
+ 
+<form action = "{{ url_for('main.add_activity')}}">
+    <button type="submit"> Add activities here</button>
+</form> 
+ 
+{% endblock %}

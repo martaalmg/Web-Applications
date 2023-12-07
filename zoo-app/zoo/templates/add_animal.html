@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <p> 
+        <h4>At the moment there are these animals:</h4>
+        <br>
+        {% for a in animals: %}
+            {{ a.name }}, 
+        {% endfor %} 
+    </p>
+    <div>
+        <h1>Add animal</h1>
+        <br>
+    </div>  
+
+    <div>
+        <form class="input-addAnimal" action="{{ url_for('main.add_animal') }}" method="post">
+            <input class="form-input" type="text" name="Name" placeholder="Name" required/>
+            <br>
+            <input class="form-input" type="text" name="Information" placeholder="Information" required/>
+            <br>
+            <input class="form-input" type="text" name="Zone" placeholder="Zone" required/>
+            <br>
+            <input class="form-input" type="text" name="Image" placeholder="URL of the Image"/>
+            <p><small>The name and the extension for the image (<em>.jpeg, .jpg</em>, etc)</small></p>
+        
+            <p class="info"> 
+                Select the type of animal you are going to insert: 
+            </p>
+    
+            <div class="barAnimal">
+                <input type="radio" id="Mammal" name="Type" value="Mammal" checked>
+                <label for="Mammal">Mammal</label>
+
+                <input type="radio" id="Fish" name="Type" value="Fish">
+                <label for="Fish">Fish</label>               
+                
+                <input type="radio" id="Bird" name="Type" value="Bird"> 
+                <label for="Bird">Bird </label>
+                
+                <input type="radio" id="Reptile" name="Type" value="Reptile">
+                <label for="Reptile">Reptile</label>
+                
+                <input type="radio" id="Invertebrate" name="Type" value="Invertebrate">                
+                <label for="Invertebrate">Invertebrate</label>
+                
+                <input type="radio" id="Amphibiant" name="Type" value="Amphibiant">
+                <label for="Amphibiant">Amphibiant</label>
+
+            </div>
+            <input class="AddAnimalButton", type="submit" value="Add Animal"/> 
+            
+        </form>
+        
+
+            {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+            <br>
+                {{ message }}
+            {% endfor %}
+            {% endwith %}
+
+
+
+    </div>   
+
+</div>      
+    
+{% endblock %} 

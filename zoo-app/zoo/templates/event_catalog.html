@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3> Events Catalog </h3>
+
+    {% for event1 in event_catalog %}
+        {% if event1.featured == 1%}
+            <div class="disposicion">
+                {% include 'event_catalog_template.html' %}
+            </div>
+        {% endif%}
+    {% endfor %}            
+
+{% endblock %}

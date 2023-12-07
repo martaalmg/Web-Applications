@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> ZOO MAP </h1>
+<h3> Click on each animal to see more information </h3>
+<img src="static/imagenes/map.jpg" width="900px" height="540px" usemap="#mapa" />
+<map name = "mapa">
+    <area shape="circle" coords="432,60,20" href="{{ url_for('main.animal', animal_id=1)}}" />
+    <area shape="circle" coords="425,212,20" href="{{ url_for('main.animal', animal_id=9)}}" />
+    <area shape="circle" coords="543,66,20" href="{{ url_for('main.animal', animal_id=4)}}" />
+    <area shape="circle" coords="134,281,15" href="{{ url_for('main.animal', animal_id=6)}}" />
+    <area shape="circle" coords="318,46,15" href="{{ url_for('main.animal', animal_id=3)}}" />
+    <area shape="circle" coords="654,328,15" href="{{ url_for('main.animal', animal_id=11)}}" />
+    <area shape="circle" coords="752,343,15" href="{{ url_for('main.animal', animal_id=15)}}" />
+    <area shape="circle" coords="238,85,15" href="{{ url_for('main.animal', animal_id=2)}}" />
+    <area shape="circle" coords="570,176,15" href="{{ url_for('main.animal', animal_id=17)}}" />
+    <area shape="circle" coords="190,161,15" href="{{ url_for('main.animal', animal_id=14)}}" />
+    <area shape="circle" coords="700,92,15" href="{{ url_for('main.animal', animal_id=5)}}" />
+    <area shape="circle" coords="605,117,15" href="{{ url_for('main.animal', animal_id=19)}}" />
+
+</map>
+
+{% endblock %}
+

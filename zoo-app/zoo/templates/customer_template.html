@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="con">
+    <h1>CUSTOMER OPTIONS</h1>
+</div>
+
+<form action = "{{ url_for('main.events')}}">
+    <button type="submit"> See here the activities you can book </button>
+</form> 
+
+<form action = "{{ url_for('main.edit_reservations')}}">
+    <button type="submit"> Cancel a reservation here </button>
+</form>
+
+{%if current_user.reservations%}
+    <div class="reservations">
+        <h3> Reservations done by: {{current_user.name}} </h3>
+        {% for reservation in current_user.reservations %}
+            {% if reservation.scheduled.time_date >= current_time %} 
+                    {% include 'user_reservation_template.html' %}
+            {% endif %} 
+        {% endfor %} 
+    </div>
+{%else%}
+    <h4>You dont have comming reservations</h4>
+{%endif%}
+
+{%if current_user.reservations%}
+    <div class="pastReservations">
+        <h3> Reservations done by {{current_user.name}} in the past</h3>
+        {% for reservation in current_user.reservations %}
+            {% if reservation.scheduled.time_date < current_time %} 
+                {% include 'user_reservation_template.html' %}
+            {% endif %} 
+        {% endfor %}  
+    </div>
+{%else%}
+    <h4>You dont have any past reservations</h4>
+{%endif%}
+
+{% endblock %}

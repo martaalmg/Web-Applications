@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="event_principal">
+        <h3>{{event1.title}}</h3> 
+        <div class="info"> 
+            <p> {{event1.info}} </p>
+            <p> ZONE: <strong> {{event1.zone}} </strong> </p>
+        </div>
+    </div>
+    
+    <div class="event_principal">
+        <div class="info"> 
+            <p> Animals you can find in this event: </p>
+
+            {%for animal in animals%}
+                <strong><a href="{{ url_for('main.animal', animal_id=animal.id)}}"> {{animal.name}}</a></strong>
+            {%endfor%} 
+        </div>
+    </div>
+
+    {%if scheduled_events%} 
+        {% if not current_user.is_authenticated: %}
+            <p> Requiered login for making reservations </p>
+        {%endif %} 
+
+        <h4> AVALIABLE DATES: </h4>
+        {% for scheduled_event in scheduled_events %}
+            {% if scheduled_event.time_date >= current_time %}            
+                {% include 'scheduled_template_present.html' %}
+            {%endif%} 
+        {% endfor %}
+
+        <h4> PAST DATES: </h4>
+        {% for scheduled_event in scheduled_events %}
+            {% if scheduled_event.time_date < current_time %}            
+                {% include 'scheduled_template_past.html' %}
+            {%endif %} 
+        {% endfor %}
+
+   {%else%}
+       <h4> This event is not scheduled yet </h4> 
+       <p> Sorry for the inconvenience </p> 
+   {%endif%} 
+                
+{% endblock %} 

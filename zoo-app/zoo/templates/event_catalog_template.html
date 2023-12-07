@@ -1,0 +1,7 @@
+<div class="event">
+    <div><h4>{{event1.title}}</h4></div>  
+
+    <form action = "{{ url_for('main.event', event_id=event1.id)}}">
+        <button type="submit"> More information about the event ({{event1.title}}) </button>
+    </form>  
+</div>

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if current_user.reservations%}
+    <h3>Here there are the comming reservations you have: </h3>
+
+    <div class="reservations">
+        {% for reservation in current_user.reservations %}
+            {% if reservation.scheduled.time_date >= current_time %} 
+                {% include 'options_reservation.html' %}
+            {% endif %} 
+        {% endfor %} 
+    </div>
+
+{%else%}
+    <h4>You dont have any reservation yet</h4>
+
+{%endif%}
+
+
+
+
+{% endblock %}

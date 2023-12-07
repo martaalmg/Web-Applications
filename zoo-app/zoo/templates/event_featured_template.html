@@ -1,0 +1,36 @@
+<div class="events">
+
+    <h4>{{event1.title}}</h4>
+    
+    {%if event1.featured == 1%} 
+        <p> This event <strong>is</strong> featured for clients </p>
+    {%else%}
+        <p> This event is <strong>not</strong> featured for clients </p> 
+    {%endif%} 
+
+    <form action = "{{ url_for('main.change_event', event_id=event1.id)}}">
+        <button class = "btn submits sign-up"> CHANGE </button>
+    </form>  
+
+    Add an scheduled activity:
+    <form action="{{ url_for('main.add_scheduled' , event_id = event1.id) }}" method="post">
+        <input class="form-input" type="date" name="Date" placeholder="Date of the activity" required/>
+        <br>
+        <input class="form-input" type="time" name="Time" placeholder="Time of the activity" required/>
+        <br>
+        <input class="form-input" type="number" name="Price" placeholder="Price of the activity" required/>
+        <br>
+        <input class="form-input" type="number" name="Places" placeholder="Places available" required/>
+        <br>
+        <input class="AddAnimalButton", type="submit" value="Add"/> 
+    </form>
+    <br>
+    {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+        <br>
+            {{ message }}
+        {% endfor %}
+    {% endwith %}
+
+
+</div>

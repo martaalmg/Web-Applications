@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv = "Content-Type" content="text/html; charset=UTF-8">
+        <title> FunZoo </title>
+        <link rel = "stylesheet"
+            href = "{{ url_for('static', filename='zoo.css') }}">
+        </head>
+    
+    <body>
+        <header>
+            <h1><a href="{{ url_for('main.homepage')}}"> FUN-ZOO </a></h1>
+        </header>
+        
+        
+        <aside class="sideBar">
+            <div class="welcome">
+                {% if current_user.is_authenticated: %}
+                    {% if current_user.role == True %}
+                        <h3>User: {{current_user.name}}</h3>    
+                    {% else %}
+                        <h3>Manager: {{current_user.name}}</h3>
+                    {% endif %}
+                {% endif %}
+
+                
+                <h4> Search here to see our animals: </h4>
+                <form action="{{ url_for('main.animal_browser_post') }}" method="post" align="center">
+                    <input class="form-input" type="text" name="Name" placeholder="Write here an animal" />
+                </form>
+
+    
+            </div>
+            
+            <nav class="nav">
+                <ul>
+                    <h4><li><a href="{{ url_for('main.catalog')}}"> Animal Catalog </a></li></h4>
+                    <br>
+                    <h4><li><a href="{{ url_for('main.events')}}"> Events </a></li></h4>
+                    <br>
+                    <h4><li><a href="{{ url_for('main.map')}}"> Zoo Map </a></li></h4>
+                    <br>
+                </ul>
+            </nav>              
+        </aside> 
+
+        <section class="sessionManagement">
+            {% if current_user.is_authenticated: %}
+            <form action = "{{ url_for('auth.logout')}}">
+                <button type="submit"> LOGOUT</button>
+            </form> 
+                {% if current_user.role == False %}
+                    <form action = "{{ url_for('main.manager')}}">
+                        <button type="submit"> MANAGER VIEW </button>
+                    </form> 
+
+                {% else %}    
+                <form action = "{{ url_for('main.customer')}}">
+                    <button type="submit"> CUSTOMER VIEW </button>
+                </form> 
+                {% endif %}
+                
+                
+            
+            {% else %} 
+            <form action = "{{ url_for('auth.login')}}">
+                <button type="submit"> LOGIN</button>
+            </form> 
+
+            {% endif %}
+        </section>
+
+
+        
+       <section class="content">
+            {% block content %}
+            {% endblock %}
+       </section>
+
+    </body>
+    <script src="{{ url_for('static', filename='zoo.js') }}"></script>
+</html>

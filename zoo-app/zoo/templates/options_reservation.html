@@ -1,0 +1,23 @@
+
+<div class="animal">
+    <h2>{{reservation.scheduled.activity.title}}</h2> 
+    <div class="info">    
+            <p>Places reserved: {{reservation.places}}</p>
+            <br>
+            <p>Date: <strong>{{reservation.scheduled.time_date}}</strong></p>
+            <br>
+            <p>The reservation was made: </p>
+            <p><strong> {{reservation.date_time}} </strong></p>
+    </div>
+    <form action = "{{ url_for('main.delete_reservation', reservation_id=reservation.id)}}" >
+        <button class = "btn submits sign-up"> Click here to cancel the reservation </button>
+    </form> 
+    {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+        <br>
+            <div>{{ message }}</div>
+        {% endfor %}
+    {% endwith %}
+
+
+</div>

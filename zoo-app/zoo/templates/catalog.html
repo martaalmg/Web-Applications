@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    <form class="input-addAnimal" action="{{ url_for('main.catalog_filter') }}" method="post">
+        <h3> Filter by zone: </h3>
+        <div class="barAnimal">
+
+            <input type="radio" id="Savannah" name="Zone" value="Savannah">
+            <label for="Savannah">Savannah</label>    
+
+            <input type="radio" id="Aquarium" name="Zone" value="Aquarium" >
+            <label for="Aquarium">Aquarium</label>
+
+            <input type="radio" id="Aviary" name="Zone" value="Aviary">
+            <label for="Aviary">Aviary</label>     
+            
+            <input type="radio" id="Farm" name="Zone" value="Farm" >
+            <label for="Farm">Farm</label>
+
+            <input type="radio" id="Reptilian" name="Zone" value="Reptilian">
+            <label for="Reptilian">Reptilian</label>    
+
+        </div>
+        <h3>Filter by type: </h3>
+        <div class="barAnimal">
+            <input type="radio" id="Mammal" name="Type" value="Mammal" >
+            <label for="Mammal">Mammal</label>
+
+            <input type="radio" id="Fish" name="Type" value="Fish">
+            <label for="Fish">Fish</label>               
+            
+            <input type="radio" id="Bird" name="Type" value="Bird"> 
+            <label for="Bird">Bird </label>
+            
+            <input type="radio" id="Reptile" name="Type" value="Reptile">
+            <label for="Reptile">Reptile</label>
+            
+            <input type="radio" id="Invertebrate" name="Type" value="Invertebrate">                
+            <label for="Invertebrate">Invertebrate</label>
+            
+            <input type="radio" id="Amphibiant" name="Type" value="Amphibiant">
+            <label for="Amphibiant">Amphibiant</label>
+
+        </div>
+        <input class="AddAnimalButton", type="submit" value="Filter Animals"/> 
+    </form>
+
+    <h1> Animal Catalog</h1>
+        {% for animal in catalog %}
+        <div class="disposicion">
+            {% include 'animal_catalog_template.html' %}
+        </div>            
+        {% endfor %}
+{% endblock %}

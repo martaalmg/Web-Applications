@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1> All activities </h1>
+    
+    {% for event1 in events %}
+        <div class="disposicion">
+            {% include 'event_featured_template.html' %}
+        </div>
+    {% endfor %}
+
+{% endblock %}

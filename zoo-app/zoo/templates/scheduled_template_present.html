@@ -1,0 +1,24 @@
+<section  class="item">
+    <p> Date and time: <strong>{{scheduled_event.time_date}} </strong></p>
+    <p> Places available: <strong>{{scheduled_event.place}} </strong></p>
+    <p> Price per person: <strong>{{scheduled_event.price}} €</strong> </p>
+
+
+    {% if current_user.is_authenticated: %}
+        {% if scheduled_event.place != 0 %}
+            <form action = "{{ url_for('main.reservation', scheduled_id=scheduled_event.id)}}">
+                <label> BOOK NOW </label>
+                <button type="submit"> Here</button>
+                <br>
+            </form> 
+        {% else %}  
+            <p>COMPLETE</p>
+            <br>
+        {% endif %} 
+
+    {%endif %} 
+
+</section>
+<br>
+
+  
